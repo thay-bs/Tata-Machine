@@ -1,95 +1,158 @@
 <!DOCTYPE html>
-<html lang="pt">
-
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tata Machine</title>
-  <style>
-    body {
-        background-color: #F5F5F5;
-        font-family: Helvetica;
-        color: #4A6644;
-        margin: 0;
-        padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversor de Bases</title>
 
-    center {
-        background-color: #ECE3D2;
-        width: 40%;
-        margin: 40px auto;
-        padding: 30px;
-        border-radius: 15px;
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f3f3f3;
+        text-align: center;
     }
 
     h1 {
-        color: #C66F80;
+        margin-top: 30px;
+        color: #c45a73;
+    }
+
+    .grade {
+        display: grid;
+        gap: 30px;
+        padding: 40px;
+        justify-items: center;
+    }
+
+    .container {
+        background-color: #e9dfcf;
+        padding: 20px;
+        border-radius: 15px;
+        width: 250px;
+    }
+
+    .container-inferior {
+        grid-column: span 3;
+        display: flex;
+        justify-content: center;
     }
 
     h3 {
-        color: #9FAA74;
+        color: #8c9a6a;
     }
 
     input {
-        padding: 8px;
-        border: 2px solid #9FAA74;
+        width: 80%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 2px solid #8c9a6a;
     }
 
     button {
-        background-color: #C66F80;
+        margin-top: 10px;
+        background-color: #c45a73;
         color: white;
         border: none;
-        padding: 8px 15px;
-        border-radius: 6px;
+        padding: 10px 15px;
+        border-radius: 8px;
+
     }
 
     p {
-        margin-top: 10px;
         font-weight: bold;
+        margin: 8px 0;
     }
 
-    #demo2, #demo3, #demo4 {
-        background-color: #F1C8CB;
+    span {
+        display: block;
+        background-color: #e8b7be;
         padding: 8px;
-        border-radius: 6px;
+        border-radius: 8px;
         margin-top: 5px;
-        display: inline-block;
-        min-width: 150px;
     }
 </style>
 </head>
 
-<body bgcolor="#00ffff">
-    <center>
-        <h1>SPTecher's Machine</h1>
+<body>
 
-        <h3>Digite um número decimal:</h3>
-        <input id="demo1" type="text" placeholder="Ex: 42">
-        <br><br>
+<h1>Conversor de Bases</h1>
 
-        <button onclick="converter()">Converter</button>
+<div class="grade">
 
-        <h3>Resultados:</h3>
-        <p>Octal:
-        <div id="demo2"></div>
-        </p>
-        <p>Hexadecimal:
-        <div id="demo3"></div>
-        </p>
-        <p>Binário:
-        <div id="demo4"></div>
-        </p>
-    </center>
+    <div class="container">
+        <h3>Octal</h3>
+        <input id="input_octal" type="text"><br>
+        <button onclick="converterOctal()">Converter</button>
 
-    <script>
-        function converter() {
-            var decimal = Number(demo1.value);
+        <p>Decimal:<span id="octal1"></span></p>
+        <p>Binário:<span id="octal2"></span></p>
+        <p>Hexadecimal:<span id="octal3"></span></p>
+    </div>
 
-            demo2.innerHTML = decimal.toString(8);
-            demo3.innerHTML = decimal.toString(16);
-            demo4.innerHTML = decimal.toString(2);
-        }
-    </script>
+    <div class="container">
+        <h3>Decimal</h3>
+        <input id="input_decimal" type="text"><br>
+        <button onclick="converterDecimal()">Converter</button>
+
+        <p>Octal:<span id="dec2"></span></p>
+        <p>Binário:<span id="dec1"></span></p>
+        <p>Hexadecimal:<span id="dec3"></span></p>
+    </div>
+
+    <div class="container">
+        <h3>Hexadecimal</h3>
+        <input id="input_hexa" type="text"><br>
+        <button onclick="converterHexadecimal()">Converter</button>
+
+        <p>Decimal:<span id="hexa1"></span></p>
+        <p>Binário:<span id="hexa2"></span></p>
+        <p>Octal:<span id="hexa3"></span></p>
+    </div>
+
+    <div class="container-inferior">
+        <div class="container">
+            <h3>Binário</h3>
+            <input id="input_binario" type="text"><br>
+            <button onclick="converterBinario()">Converter</button>
+
+            <p>Decimal:<span id="bi1"></span></p>
+            <p>Octal:<span id="bi2"></span></p>
+            <p>Hexadecimal:<span id="bi3"></span></p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function converterDecimal() {
+    let decimal = Number(input_decimal.value);
+    dec1.innerHTML = decimal.toString(2);
+    dec2.innerHTML = decimal.toString(8);
+    dec3.innerHTML = decimal.toString(16).toUpperCase();
+}
+
+function converterBinario() {
+    let binario = parseInt(input_binario.value, 2);
+    bi1.innerHTML = binario;
+    bi2.innerHTML = binario.toString(8);
+    bi3.innerHTML = binario.toString(16).toUpperCase();
+}
+
+function converterOctal() {
+    let octal = parseInt(input_octal.value, 8);
+    octal1.innerHTML = octal;
+    octal2.innerHTML = octal.toString(2);
+    octal3.innerHTML = octal.toString(16).toUpperCase();
+}
+
+function converterHexadecimal() {
+    let hexadecimal = parseInt(input_hexa.value, 16);
+    hexa1.innerHTML = hexadecimal;
+    hexa2.innerHTML = hexadecimal.toString(2);
+    hexa3.innerHTML = hexadecimal.toString(8);
+}
+</script>
+
 </body>
-
 </html>
